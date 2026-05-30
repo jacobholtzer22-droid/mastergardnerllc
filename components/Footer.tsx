@@ -1,4 +1,5 @@
 import Link from 'next/link';
+import Image from 'next/image';
 import { Phone, Mail, MapPin, Clock } from 'lucide-react';
 
 export default function Footer() {
@@ -7,9 +8,13 @@ export default function Footer() {
       <div className="container-page grid gap-12 py-16 md:grid-cols-4">
         <div className="md:col-span-2">
           <div className="flex items-center gap-2">
-            <span className="grid h-9 w-9 place-items-center rounded-full bg-white font-display text-lg font-bold text-brand-800">
-              M
-            </span>
+            <Image
+              src="/images/logo.png"
+              alt="Master Gardner, LLC logo"
+              width={44}
+              height={44}
+              className="h-11 w-11 rounded-lg bg-white object-contain p-0.5"
+            />
             <span className="font-display text-xl font-semibold tracking-tight">
               Master Gardner, LLC
             </span>

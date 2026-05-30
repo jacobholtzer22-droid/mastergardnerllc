@@ -1,6 +1,7 @@
 'use client';
 
 import Link from 'next/link';
+import Image from 'next/image';
 import { useState } from 'react';
 import { Menu, X, Phone } from 'lucide-react';
 
@@ -22,9 +23,14 @@ export default function NavBar() {
     <header className="sticky top-0 z-50 border-b border-black/5 bg-white/90 backdrop-blur">
       <div className="container-page flex h-16 items-center justify-between">
         <Link href="/" className="flex items-center gap-2">
-          <span className="grid h-9 w-9 place-items-center rounded-full bg-brand-700 font-display text-lg font-bold text-white">
-            M
-          </span>
+          <Image
+            src="/images/logo.png"
+            alt="Master Gardner, LLC logo"
+            width={40}
+            height={40}
+            className="h-10 w-10 rounded-lg object-contain"
+            priority
+          />
           <span className="font-display text-lg font-semibold tracking-tight text-ink">
             Master Gardner<span className="text-brand-700">.</span>
           </span>

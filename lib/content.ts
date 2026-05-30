@@ -8,6 +8,8 @@ export type Service = {
   long: string;
   icon: LucideIcon;
   features: string[];
+  image?: string;
+  imageAlt?: string;
 };
 
 export const SERVICES: Service[] = [
@@ -17,6 +19,8 @@ export const SERVICES: Service[] = [
     short: 'Weekly mowing, edging, weed control, and fertilization that keeps your yard sharp all season.',
     long: 'Consistent, professional weekly lawn care for residential and commercial properties. We mow at the right height for Michigan grasses, edge clean borders, control weeds, and build a fertilization schedule that strengthens turf year over year.',
     icon: Scissors,
+    image: '/images/backyard-lawn-stripes.png',
+    imageAlt: 'Residential backyard lawn with crisp, professional mowing stripes',
     features: [
       'Weekly mowing & trimming',
       'Edging along walks and beds',
@@ -31,6 +35,8 @@ export const SERVICES: Service[] = [
     short: 'Custom garden design, mulching, planting, and hardscape work tailored to your property.',
     long: 'From new garden beds to full property redesigns, we build landscapes that look great today and grow beautifully over time. Mulch, plantings, edging, stone work — we handle the design, the install, and the long-term care.',
     icon: Leaf,
+    image: '/images/tree-lawn-stripes.png',
+    imageAlt: 'Landscaped lawn with mowing stripes detailed around a tree',
     features: [
       'Garden design & installation',
       'Mulching & bed refreshes',
@@ -114,6 +120,8 @@ export const SERVICES: Service[] = [
     short: 'Ongoing seasonal upkeep so your property looks its best every week.',
     long: 'A simple, all-in-one schedule that keeps your property dialed in: mowing, fertilization, bed maintenance, seasonal cleanups, and a single point of contact who knows your yard.',
     icon: Wrench,
+    image: '/images/commercial-property.png',
+    imageAlt: 'Well-maintained commercial property with manicured lawn and beds along a sidewalk',
     features: [
       'Mowing & trimming',
       'Bed maintenance',

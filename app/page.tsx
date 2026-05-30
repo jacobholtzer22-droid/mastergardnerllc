@@ -2,7 +2,7 @@ import Link from 'next/link';
 import { ArrowRight, Star, ShieldCheck, Award, Leaf } from 'lucide-react';
 import { Section, SectionHeader } from '@/components/Section';
 import CTASection from '@/components/CTASection';
-import ImagePlaceholder from '@/components/ImagePlaceholder';
+import Photo from '@/components/Photo';
 import { SERVICES, TESTIMONIALS, VALUE_PROPS } from '@/lib/content';
 
 export default function HomePage() {
@@ -51,7 +51,12 @@ export default function HomePage() {
           </div>
 
           <div className="relative">
-            <ImagePlaceholder label="Hero photo — replace later" aspect="aspect-[4/5]" />
+            <Photo
+              src="/images/tree-lawn-stripes.png"
+              alt="Freshly mowed lawn with crisp mowing stripes around a tree"
+              aspect="aspect-[4/5]"
+              priority
+            />
             <div className="absolute -bottom-6 -left-6 hidden rounded-2xl bg-white p-4 shadow-soft ring-1 ring-black/5 sm:block">
               <div className="flex items-center gap-2">
                 {[...Array(5)].map((_, i) => (
@@ -101,7 +106,11 @@ export default function HomePage() {
       <section className="bg-cream py-20 sm:py-24">
         <div className="container-page grid gap-12 lg:grid-cols-2 lg:items-center">
           <div>
-            <ImagePlaceholder label="Crew at work — replace later" aspect="aspect-[5/4]" />
+            <Photo
+              src="/images/truck-on-site.png"
+              alt="Master Gardner truck and trailer on a commercial property with freshly striped lawn"
+              aspect="aspect-[5/4]"
+            />
           </div>
           <div>
             <p className="eyebrow">Why Master Gardner</p>

@@ -3,6 +3,7 @@ import { Check, ArrowRight } from 'lucide-react';
 import { Section, SectionHeader } from '@/components/Section';
 import CTASection from '@/components/CTASection';
 import ImagePlaceholder from '@/components/ImagePlaceholder';
+import Photo from '@/components/Photo';
 import { SERVICES } from '@/lib/content';
 
 export const metadata = {
@@ -49,7 +50,11 @@ export default function ServicesPage() {
                 className="grid scroll-mt-24 gap-10 lg:grid-cols-2 lg:items-center"
               >
                 <div className={reverse ? 'lg:order-2' : ''}>
-                  <ImagePlaceholder label={`${s.title} — replace later`} aspect="aspect-[5/4]" />
+                  {s.image ? (
+                    <Photo src={s.image} alt={s.imageAlt ?? s.title} aspect="aspect-[5/4]" />
+                  ) : (
+                    <ImagePlaceholder label={`${s.title} — replace later`} aspect="aspect-[5/4]" />
+                  )}
                 </div>
                 <div className={reverse ? 'lg:order-1' : ''}>
                   <div className="inline-grid h-12 w-12 place-items-center rounded-xl bg-brand-100 text-brand-700">

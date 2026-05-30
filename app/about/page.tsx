@@ -1,7 +1,7 @@
 import { Leaf, HeartHandshake, Clock, ShieldCheck } from 'lucide-react';
 import { Section, SectionHeader } from '@/components/Section';
 import CTASection from '@/components/CTASection';
-import ImagePlaceholder from '@/components/ImagePlaceholder';
+import Photo from '@/components/Photo';
 
 export const metadata = {
   title: 'About — Master Gardner, LLC',
@@ -36,7 +36,11 @@ export default function AboutPage() {
       <Section>
         <div className="grid gap-12 lg:grid-cols-2 lg:items-center">
           <div>
-            <ImagePlaceholder label="Owner / crew photo — replace later" aspect="aspect-[4/5]" />
+            <Photo
+              src="/images/deer-lawn.png"
+              alt="A deer resting on a lush, healthy lawn beside evergreen trees"
+              aspect="aspect-[4/5]"
+            />
           </div>
           <div>
             <p className="eyebrow">Our story</p>
