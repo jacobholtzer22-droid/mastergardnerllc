@@ -16,11 +16,48 @@ const SERVICE_OPTIONS = [
 
 export default function ContactForm() {
   const [submitted, setSubmitted] = useState(false);
+  const [submitting, setSubmitting] = useState(false);
+  const [error, setError] = useState(false);
 
-  function onSubmit(e: React.FormEvent<HTMLFormElement>) {
+  async function onSubmit(e: React.FormEvent<HTMLFormElement>) {
     e.preventDefault();
-    // No backend yet — purely client-side. Hook up to your endpoint of choice later.
-    setSubmitted(true);
+    setError(false);
+    setSubmitting(true);
+
+    const form = new FormData(e.currentTarget);
+    const name = (form.get('name') as string) ?? '';
+    const phone = (form.get('phone') as string) ?? '';
+    const email = (form.get('email') as string) ?? '';
+    const service = (form.get('service') as string) ?? '';
+    const note = (form.get('message') as string) ?? '';
+    const smsConsent = form.get('smsConsent') === 'on';
+
+    // Combine the selected service and any free-text note into one message.
+    const message = [service, note].map((s) => s.trim()).filter(Boolean).join(' — ');
+
+    try {
+      const res = await fetch('https://www.alignandacquire.com/api/contact', {
+        method: 'POST',
+        headers: { 'Content-Type': 'application/json' },
+        body: JSON.stringify({
+          businessSlug: 'master-gardner',
+          name,
+          phone,
+          email,
+          message,
+          smsConsent,
+        }),
+      });
+      if (!res.ok) {
+        setError(true);
+        return;
+      }
+      setSubmitted(true);
+    } catch {
+      setError(true);
+    } finally {
+      setSubmitting(false);
+    }
   }
 
   if (submitted) {
@@ -97,8 +134,22 @@ export default function ContactForm() {
         </label>
       </div>
 
-      <button type="submit" className="btn-primary mt-6 w-full sm:w-auto">
-        Send message <Send className="ml-2 h-4 w-4" />
+      {error && (
+        <p className="mt-4 text-sm text-red-600">
+          Sorry, something went wrong sending your message. Please try again or call us at{' '}
+          <a href="tel:+16163661552" className="font-semibold text-brand-800">
+            (616) 366-1552
+          </a>
+          .
+        </p>
+      )}
+
+      <button
+        type="submit"
+        disabled={submitting}
+        className="btn-primary mt-6 w-full disabled:opacity-60 sm:w-auto"
+      >
+        {submitting ? 'Sending…' : 'Send message'} <Send className="ml-2 h-4 w-4" />
       </button>
     </form>
   );
