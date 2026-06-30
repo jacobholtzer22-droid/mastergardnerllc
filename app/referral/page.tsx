@@ -2,6 +2,8 @@ import Link from 'next/link';
 import { Gift, Users, Sparkles } from 'lucide-react';
 import { Section, SectionHeader } from '@/components/Section';
 import CTASection from '@/components/CTASection';
+import Reveal from '@/components/motion/Reveal';
+import { Stagger, StaggerItem } from '@/components/motion/Stagger';
 
 export const metadata = {
   title: 'Customer Referrals — Master Gardner, LLC',
@@ -19,7 +21,7 @@ export default function ReferralPage() {
   return (
     <>
       <section className="bg-cream">
-        <div className="container-page py-20 sm:py-24">
+        <Reveal className="container-page py-20 sm:py-24">
           <p className="eyebrow">Customer Referrals</p>
           <h1 className="h-display mt-3 max-w-3xl">
             Refer a neighbor. We&apos;ll thank you both.
@@ -28,33 +30,37 @@ export default function ReferralPage() {
             Most of our growth comes from happy customers telling their friends. If you&apos;ve
             had a great experience with us, we&apos;d love to make it worth your while.
           </p>
-        </div>
+        </Reveal>
       </section>
 
       <Section>
-        <SectionHeader
-          eyebrow="How it works"
-          title="Three simple steps."
-          center
-        />
-        <div className="mt-12 grid gap-6 md:grid-cols-3">
+        <Reveal>
+          <SectionHeader
+            eyebrow="How it works"
+            title="Three simple steps."
+            center
+          />
+        </Reveal>
+        <Stagger className="mt-12 grid gap-6 md:grid-cols-3" stagger={0.12}>
           {STEPS.map((s, i) => {
             const Icon = s.icon;
             return (
-              <div key={i} className="card-soft text-center">
-                <div className="mx-auto grid h-14 w-14 place-items-center rounded-2xl bg-brand-100 text-brand-700">
-                  <Icon className="h-7 w-7" />
+              <StaggerItem key={i}>
+                <div className="card-soft h-full text-center transition duration-300 hover:-translate-y-1.5 hover:shadow-lg">
+                  <div className="mx-auto grid h-14 w-14 place-items-center rounded-2xl bg-brand-100 text-brand-700">
+                    <Icon className="h-7 w-7" />
+                  </div>
+                  <h3 className="mt-5 font-display text-xl font-semibold text-ink">
+                    {s.title}
+                  </h3>
+                  <p className="mt-2 text-sm leading-relaxed text-ink/70">{s.body}</p>
                 </div>
-                <h3 className="mt-5 font-display text-xl font-semibold text-ink">
-                  {s.title}
-                </h3>
-                <p className="mt-2 text-sm leading-relaxed text-ink/70">{s.body}</p>
-              </div>
+              </StaggerItem>
             );
           })}
-        </div>
+        </Stagger>
 
-        <div className="mt-16 rounded-3xl bg-cream p-10 text-center ring-1 ring-black/5">
+        <Reveal className="mt-16 rounded-3xl bg-cream p-10 text-center ring-1 ring-black/5">
           <h3 className="h-section">Ready to refer someone?</h3>
           <p className="lead mx-auto mt-3 max-w-xl">
             Have them mention your name when they reach out — or send us their info directly.
@@ -67,7 +73,7 @@ export default function ReferralPage() {
               Call (616) 366-1552
             </a>
           </div>
-        </div>
+        </Reveal>
       </Section>
 
       <CTASection />

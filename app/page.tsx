@@ -3,116 +3,63 @@ import { ArrowRight, Star, ShieldCheck, Award, Leaf } from 'lucide-react';
 import { Section, SectionHeader } from '@/components/Section';
 import CTASection from '@/components/CTASection';
 import Photo from '@/components/Photo';
+import Hero from '@/components/Hero';
+import Reveal from '@/components/motion/Reveal';
+import { Stagger, StaggerItem } from '@/components/motion/Stagger';
 import { SERVICES, TESTIMONIALS, VALUE_PROPS } from '@/lib/content';
 
 export default function HomePage() {
   return (
     <>
-      {/* HERO */}
-      <section className="relative overflow-hidden bg-cream">
-        <div className="absolute inset-0 -z-10 opacity-60"
-             style={{
-               backgroundImage:
-                 'radial-gradient(circle at 15% 20%, #e3edd9 0, transparent 45%), radial-gradient(circle at 85% 60%, #c8dcb3 0, transparent 50%)',
-             }}
-        />
-        <div className="container-page grid gap-12 py-20 sm:py-28 lg:grid-cols-2 lg:items-center">
-          <div>
-            <p className="eyebrow">Master Gardner, LLC · Ada, Michigan</p>
-            <h1 className="h-display mt-4">
-              A beautiful landscape <span className="text-brand-700">starts here.</span>
-            </h1>
-            <p className="lead mt-5 max-w-xl">
-              Lawn care, landscaping, snow plowing, and salting across Kent and Ottawa County —
-              done by a local crew that actually cares about the result.
-            </p>
-            <div className="mt-8 flex flex-wrap gap-3">
-              <Link href="/contact" className="btn-primary">
-                Get a Free Quote <ArrowRight className="ml-2 h-4 w-4" />
-              </Link>
-              <Link href="/services" className="btn-outline">
-                View Our Services
-              </Link>
-            </div>
-            <div className="mt-10 grid max-w-md grid-cols-3 gap-6 text-sm">
-              <div>
-                <p className="font-display text-3xl font-semibold text-brand-800">15+</p>
-                <p className="text-ink/60">Years experience</p>
-              </div>
-              <div>
-                <p className="font-display text-3xl font-semibold text-brand-800">5.0</p>
-                <p className="text-ink/60">Customer rating</p>
-              </div>
-              <div>
-                <p className="font-display text-3xl font-semibold text-brand-800">BBB</p>
-                <p className="text-ink/60">Accredited</p>
-              </div>
-            </div>
-          </div>
-
-          <div className="relative">
-            <Photo
-              src="/images/tree-lawn-stripes.png"
-              alt="Freshly mowed lawn with crisp mowing stripes around a tree"
-              aspect="aspect-[4/5]"
-              priority
-            />
-            <div className="absolute -bottom-6 -left-6 hidden rounded-2xl bg-white p-4 shadow-soft ring-1 ring-black/5 sm:block">
-              <div className="flex items-center gap-2">
-                {[...Array(5)].map((_, i) => (
-                  <Star key={i} className="h-4 w-4 fill-yellow-400 text-yellow-400" />
-                ))}
-              </div>
-              <p className="mt-2 text-sm font-medium text-ink">“Outstanding work.”</p>
-              <p className="text-xs text-ink/60">— Marge E.</p>
-            </div>
-          </div>
-        </div>
-      </section>
+      <Hero />
 
       {/* SERVICES OVERVIEW */}
       <Section id="services">
-        <SectionHeader
-          eyebrow="What we do"
-          title="Full-service property care, all year long."
-          description="From weekly mowing to full landscape construction and winter snow management — one crew handles it all."
-        />
-        <div className="mt-12 grid gap-6 sm:grid-cols-2 lg:grid-cols-4">
+        <Reveal>
+          <SectionHeader
+            eyebrow="What we do"
+            title="Full-service property care, all year long."
+            description="From weekly mowing to full landscape construction and winter snow management — one crew handles it all."
+          />
+        </Reveal>
+        <Stagger className="mt-12 grid gap-6 sm:grid-cols-2 lg:grid-cols-4" stagger={0.08}>
           {SERVICES.slice(0, 8).map((s) => {
             const Icon = s.icon;
             return (
-              <Link
-                key={s.slug}
-                href={`/services#${s.slug}`}
-                className="group card-soft transition hover:-translate-y-1 hover:shadow-lg"
-              >
-                <div className="grid h-12 w-12 place-items-center rounded-xl bg-brand-100 text-brand-700">
-                  <Icon className="h-6 w-6" />
-                </div>
-                <h3 className="mt-5 font-display text-xl font-semibold text-ink">
-                  {s.title}
-                </h3>
-                <p className="mt-2 text-sm leading-relaxed text-ink/70">{s.short}</p>
-                <p className="mt-4 inline-flex items-center gap-1 text-sm font-semibold text-brand-700 group-hover:text-brand-800">
-                  Learn more <ArrowRight className="h-4 w-4" />
-                </p>
-              </Link>
+              <StaggerItem key={s.slug}>
+                <Link
+                  href={`/services#${s.slug}`}
+                  className="group card-soft block h-full transition duration-300 hover:-translate-y-1.5 hover:shadow-lg hover:ring-brand-200"
+                >
+                  <div className="grid h-12 w-12 place-items-center rounded-xl bg-brand-100 text-brand-700 transition-transform duration-300 group-hover:scale-110 group-hover:rotate-3">
+                    <Icon className="h-6 w-6" />
+                  </div>
+                  <h3 className="mt-5 font-display text-xl font-semibold text-ink">
+                    {s.title}
+                  </h3>
+                  <p className="mt-2 text-sm leading-relaxed text-ink/70">{s.short}</p>
+                  <p className="mt-4 inline-flex items-center gap-1 text-sm font-semibold text-brand-700 transition-all group-hover:gap-2 group-hover:text-brand-800">
+                    Learn more <ArrowRight className="h-4 w-4" />
+                  </p>
+                </Link>
+              </StaggerItem>
             );
           })}
-        </div>
+        </Stagger>
       </Section>
 
       {/* WHY US */}
       <section className="bg-cream py-20 sm:py-24">
         <div className="container-page grid gap-12 lg:grid-cols-2 lg:items-center">
-          <div>
+          <Reveal direction="right">
             <Photo
               src="/images/truck-on-site.png"
               alt="Master Gardner truck and trailer on a commercial property with freshly striped lawn"
               aspect="aspect-[5/4]"
+              className="transition-transform duration-500 hover:scale-[1.02]"
             />
-          </div>
-          <div>
+          </Reveal>
+          <Reveal direction="left" delay={0.1}>
             <p className="eyebrow">Why Master Gardner</p>
             <h2 className="h-section mt-3">
               Local crew. Real accountability. <span className="text-brand-700">Beautiful results.</span>
@@ -122,9 +69,9 @@ export default function HomePage() {
               based right here in Ada. Every job runs through our own crew — so the person you
               talk to is the person who&apos;s actually on your property.
             </p>
-            <ul className="mt-8 grid gap-5 sm:grid-cols-2">
+            <Stagger className="mt-8 grid gap-5 sm:grid-cols-2" as="ul" stagger={0.08}>
               {VALUE_PROPS.map((v) => (
-                <li key={v.title} className="flex gap-3">
+                <StaggerItem key={v.title} as="li" className="flex gap-3">
                   <div className="mt-1 grid h-8 w-8 flex-shrink-0 place-items-center rounded-full bg-brand-100 text-brand-700">
                     <Leaf className="h-4 w-4" />
                   </div>
@@ -132,56 +79,68 @@ export default function HomePage() {
                     <p className="font-semibold text-ink">{v.title}</p>
                     <p className="mt-1 text-sm text-ink/70">{v.body}</p>
                   </div>
-                </li>
+                </StaggerItem>
               ))}
-            </ul>
-          </div>
+            </Stagger>
+          </Reveal>
         </div>
       </section>
 
       {/* TESTIMONIALS */}
       <Section>
-        <SectionHeader
-          eyebrow="Reviews"
-          title="Trusted by neighbors across West Michigan."
-          center
-        />
-        <div className="mt-12 grid gap-6 md:grid-cols-3">
+        <Reveal>
+          <SectionHeader
+            eyebrow="Reviews"
+            title="Trusted by neighbors across West Michigan."
+            center
+          />
+        </Reveal>
+        <Stagger className="mt-12 grid gap-6 md:grid-cols-3" stagger={0.12}>
           {TESTIMONIALS.slice(0, 3).map((t, i) => (
-            <div key={i} className="card-soft">
-              <div className="flex items-center gap-1">
-                {[...Array(5)].map((_, j) => (
-                  <Star key={j} className="h-4 w-4 fill-yellow-400 text-yellow-400" />
-                ))}
+            <StaggerItem key={i}>
+              <div className="card-soft h-full transition duration-300 hover:-translate-y-1 hover:shadow-lg">
+                <div className="flex items-center gap-3">
+                  <div className="grid h-10 w-10 place-items-center rounded-full bg-brand-700 font-display text-sm font-semibold text-white">
+                    {t.name.charAt(0)}
+                  </div>
+                  <div className="flex items-center gap-1">
+                    {[...Array(5)].map((_, j) => (
+                      <Star key={j} className="h-4 w-4 fill-yellow-400 text-yellow-400" />
+                    ))}
+                  </div>
+                </div>
+                <p className="mt-4 text-sm leading-relaxed text-ink/80">&ldquo;{t.quote}&rdquo;</p>
+                <p className="mt-4 text-sm font-semibold text-ink">— {t.name}</p>
               </div>
-              <p className="mt-4 text-sm leading-relaxed text-ink/80">&ldquo;{t.quote}&rdquo;</p>
-              <p className="mt-4 text-sm font-semibold text-ink">— {t.name}</p>
-            </div>
+            </StaggerItem>
           ))}
-        </div>
-        <div className="mt-10 flex justify-center">
+        </Stagger>
+        <Reveal className="mt-10 flex justify-center" delay={0.1}>
           <Link href="/reviews" className="btn-outline">
             Read more reviews
           </Link>
-        </div>
+        </Reveal>
       </Section>
 
       {/* TRUST STRIP */}
       <section className="border-y border-black/5 bg-white py-10">
-        <div className="container-page grid gap-6 text-center sm:grid-cols-3">
-          <div className="flex items-center justify-center gap-3">
+        <Stagger
+          className="container-page grid gap-6 text-center sm:grid-cols-3"
+          stagger={0.12}
+        >
+          <StaggerItem className="flex items-center justify-center gap-3">
             <ShieldCheck className="h-6 w-6 text-brand-700" />
             <span className="text-sm font-medium text-ink/80">BBB Accredited Business</span>
-          </div>
-          <div className="flex items-center justify-center gap-3">
+          </StaggerItem>
+          <StaggerItem className="flex items-center justify-center gap-3">
             <Award className="h-6 w-6 text-brand-700" />
             <span className="text-sm font-medium text-ink/80">Licensed &amp; Insured</span>
-          </div>
-          <div className="flex items-center justify-center gap-3">
+          </StaggerItem>
+          <StaggerItem className="flex items-center justify-center gap-3">
             <Leaf className="h-6 w-6 text-brand-700" />
             <span className="text-sm font-medium text-ink/80">Locally Owned &amp; Operated</span>
-          </div>
-        </div>
+          </StaggerItem>
+        </Stagger>
       </section>
 
       <CTASection />

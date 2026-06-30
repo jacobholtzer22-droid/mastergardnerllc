@@ -1,7 +1,9 @@
 import Link from 'next/link';
 import { Star } from 'lucide-react';
-import { Section, SectionHeader } from '@/components/Section';
+import { Section } from '@/components/Section';
 import CTASection from '@/components/CTASection';
+import Reveal from '@/components/motion/Reveal';
+import { Stagger, StaggerItem } from '@/components/motion/Stagger';
 import { TESTIMONIALS } from '@/lib/content';
 
 export const metadata = {
@@ -14,7 +16,7 @@ export default function ReviewsPage() {
   return (
     <>
       <section className="bg-cream">
-        <div className="container-page py-20 sm:py-24">
+        <Reveal className="container-page py-20 sm:py-24">
           <p className="eyebrow">Reviews</p>
           <h1 className="h-display mt-3 max-w-3xl">
             What our customers say.
@@ -23,25 +25,32 @@ export default function ReviewsPage() {
             We&apos;ve been lucky to work with great clients across Kent and Ottawa County.
             Here&apos;s a handful of what they&apos;ve had to say.
           </p>
-        </div>
+        </Reveal>
       </section>
 
       <Section>
-        <div className="grid gap-6 md:grid-cols-2 lg:grid-cols-3">
+        <Stagger className="grid gap-6 md:grid-cols-2 lg:grid-cols-3" stagger={0.09}>
           {TESTIMONIALS.map((t, i) => (
-            <div key={i} className="card-soft">
-              <div className="flex items-center gap-1">
-                {[...Array(5)].map((_, j) => (
-                  <Star key={j} className="h-4 w-4 fill-yellow-400 text-yellow-400" />
-                ))}
+            <StaggerItem key={i}>
+              <div className="card-soft h-full transition duration-300 hover:-translate-y-1 hover:shadow-lg">
+                <div className="flex items-center gap-3">
+                  <div className="grid h-10 w-10 place-items-center rounded-full bg-brand-700 font-display text-sm font-semibold text-white">
+                    {t.name.charAt(0)}
+                  </div>
+                  <div className="flex items-center gap-1">
+                    {[...Array(5)].map((_, j) => (
+                      <Star key={j} className="h-4 w-4 fill-yellow-400 text-yellow-400" />
+                    ))}
+                  </div>
+                </div>
+                <p className="mt-4 text-sm leading-relaxed text-ink/80">
+                  &ldquo;{t.quote}&rdquo;
+                </p>
+                <p className="mt-4 text-sm font-semibold text-ink">— {t.name}</p>
               </div>
-              <p className="mt-4 text-sm leading-relaxed text-ink/80">
-                &ldquo;{t.quote}&rdquo;
-              </p>
-              <p className="mt-4 text-sm font-semibold text-ink">— {t.name}</p>
-            </div>
+            </StaggerItem>
           ))}
-        </div>
+        </Stagger>
         <div className="mt-12 text-center">
           <p className="text-sm text-ink/70">
             Worked with us? We&apos;d love your feedback.

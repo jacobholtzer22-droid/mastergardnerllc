@@ -1,6 +1,8 @@
 import { Phone, Mail, MapPin, Clock } from 'lucide-react';
 import { Section, SectionHeader } from '@/components/Section';
 import ContactForm from '@/components/ContactForm';
+import Reveal from '@/components/motion/Reveal';
+import { Stagger, StaggerItem } from '@/components/motion/Stagger';
 
 export const metadata = {
   title: 'Contact — Master Gardner, LLC',
@@ -31,7 +33,7 @@ export default function ContactPage() {
   return (
     <>
       <section className="bg-cream">
-        <div className="container-page py-20 sm:py-24">
+        <Reveal className="container-page py-20 sm:py-24">
           <p className="eyebrow">Contact</p>
           <h1 className="h-display mt-3 max-w-3xl">
             Get a free quote.
@@ -40,15 +42,15 @@ export default function ContactPage() {
             Fill out the form below or call us directly. We respond to most inquiries within
             one business day.
           </p>
-        </div>
+        </Reveal>
       </section>
 
       <Section>
         <div className="grid gap-12 lg:grid-cols-5">
-          <div className="lg:col-span-3">
+          <Reveal direction="right" className="lg:col-span-3">
             <ContactForm />
-          </div>
-          <aside className="space-y-6 lg:col-span-2">
+          </Reveal>
+          <Reveal as="div" direction="left" delay={0.1} className="space-y-6 lg:col-span-2">
             <div className="card-soft">
               <h3 className="font-display text-xl font-semibold text-ink">
                 Get in touch
@@ -97,29 +99,36 @@ export default function ContactPage() {
                 accommodate.
               </p>
             </div>
-          </aside>
+          </Reveal>
         </div>
       </Section>
 
       {/* FAQ */}
       <section className="bg-cream py-20 sm:py-24">
         <div className="container-page">
-          <SectionHeader
-            eyebrow="FAQ"
-            title="Frequently asked questions."
-            center
-          />
-          <div className="mx-auto mt-12 max-w-3xl divide-y divide-black/10 rounded-2xl bg-white p-2 shadow-soft ring-1 ring-black/5">
+          <Reveal>
+            <SectionHeader
+              eyebrow="FAQ"
+              title="Frequently asked questions."
+              center
+            />
+          </Reveal>
+          <Stagger
+            className="mx-auto mt-12 max-w-3xl divide-y divide-black/10 rounded-2xl bg-white p-2 shadow-soft ring-1 ring-black/5"
+            stagger={0.07}
+          >
             {FAQ.map((item, i) => (
-              <details key={i} className="group p-4">
+              <StaggerItem as="div" key={i} className="group p-4">
+              <details className="group">
                 <summary className="flex cursor-pointer items-center justify-between gap-4 font-display text-lg font-semibold text-ink">
                   {item.q}
                   <span className="text-brand-700 transition group-open:rotate-45">+</span>
                 </summary>
                 <p className="mt-3 text-sm leading-relaxed text-ink/70">{item.a}</p>
               </details>
+              </StaggerItem>
             ))}
-          </div>
+          </Stagger>
         </div>
       </section>
     </>

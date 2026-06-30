@@ -1,6 +1,8 @@
 import { MapPin } from 'lucide-react';
 import { Section, SectionHeader } from '@/components/Section';
 import CTASection from '@/components/CTASection';
+import Reveal from '@/components/motion/Reveal';
+import { Stagger, StaggerItem } from '@/components/motion/Stagger';
 import { SERVICE_AREAS } from '@/lib/content';
 
 export const metadata = {
@@ -13,7 +15,7 @@ export default function ServiceAreaPage() {
   return (
     <>
       <section className="bg-cream">
-        <div className="container-page py-20 sm:py-24">
+        <Reveal className="container-page py-20 sm:py-24">
           <p className="eyebrow">Service Area</p>
           <h1 className="h-display mt-3 max-w-3xl">
             Proudly serving West Michigan.
@@ -22,26 +24,31 @@ export default function ServiceAreaPage() {
             Based in Ada, we cover Kent and Ottawa County and the communities in between.
             Not sure if we cover your area? Give us a call — chances are, we do.
           </p>
-        </div>
+        </Reveal>
       </section>
 
       <Section>
-        <SectionHeader
-          eyebrow="Cities we serve"
-          title="Communities across Kent &amp; Ottawa County."
-          description="If you don’t see your city listed, reach out — we cover most of West Michigan."
-        />
-        <div className="mt-12 grid gap-3 sm:grid-cols-2 md:grid-cols-3 lg:grid-cols-4">
+        <Reveal>
+          <SectionHeader
+            eyebrow="Cities we serve"
+            title="Communities across Kent &amp; Ottawa County."
+            description="If you don’t see your city listed, reach out — we cover most of West Michigan."
+          />
+        </Reveal>
+        <Stagger
+          className="mt-12 grid gap-3 sm:grid-cols-2 md:grid-cols-3 lg:grid-cols-4"
+          stagger={0.04}
+        >
           {SERVICE_AREAS.map((city) => (
-            <div
+            <StaggerItem
               key={city}
-              className="flex items-center gap-3 rounded-xl bg-cream px-4 py-3 ring-1 ring-black/5"
+              className="flex items-center gap-3 rounded-xl bg-cream px-4 py-3 ring-1 ring-black/5 transition duration-300 hover:-translate-y-0.5 hover:bg-brand-50 hover:ring-brand-200"
             >
               <MapPin className="h-4 w-4 flex-shrink-0 text-brand-700" />
               <span className="text-sm font-medium text-ink/80">{city}</span>
-            </div>
+            </StaggerItem>
           ))}
-        </div>
+        </Stagger>
       </Section>
 
       <CTASection />

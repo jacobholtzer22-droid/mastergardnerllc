@@ -16,6 +16,62 @@ body {
   text-rendering: optimizeLegibility;
 }
 
+/* ---- Brand motion ---------------------------------------------------- */
+
+/* Slow cinematic zoom for hero photography */
+@keyframes kenburns {
+  0%   { transform: scale(1.05) translate3d(0, 0, 0); }
+  100% { transform: scale(1.18) translate3d(-1.5%, -1.5%, 0); }
+}
+.animate-kenburns {
+  animation: kenburns 22s ease-out forwards;
+}
+
+/* Drifting gradient blobs (CTA / hero background accents) */
+@keyframes drift {
+  0%, 100% { transform: translate3d(0, 0, 0) scale(1); }
+  50%      { transform: translate3d(4%, -3%, 0) scale(1.12); }
+}
+.animate-drift      { animation: drift 16s ease-in-out infinite; }
+.animate-drift-slow { animation: drift 24s ease-in-out infinite reverse; }
+
+/* Mowing-stripe motif — a signature lawn texture used as a section divider */
+.stripe-divider {
+  height: 10px;
+  width: 100%;
+  background-image: repeating-linear-gradient(
+    115deg,
+    #46732a 0,
+    #46732a 16px,
+    #5d9239 16px,
+    #5d9239 32px
+  );
+  background-size: 200% 100%;
+  animation: stripe-scroll 9s linear infinite;
+  opacity: 0.9;
+}
+@keyframes stripe-scroll {
+  to { background-position: 200% 0; }
+}
+
+/* Gentle floating accent (hero review card) */
+@keyframes float-soft {
+  0%, 100% { transform: translateY(0); }
+  50%      { transform: translateY(-8px); }
+}
+.animate-float { animation: float-soft 5s ease-in-out infinite; }
+
+@media (prefers-reduced-motion: reduce) {
+  .animate-kenburns,
+  .animate-drift,
+  .animate-drift-slow,
+  .stripe-divider,
+  .animate-float {
+    animation: none !important;
+  }
+  html { scroll-behavior: auto; }
+}
+
 @layer components {
   .container-page {
     @apply mx-auto w-full max-w-container px-5 sm:px-8;

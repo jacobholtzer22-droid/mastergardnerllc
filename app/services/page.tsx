@@ -4,6 +4,7 @@ import { Section, SectionHeader } from '@/components/Section';
 import CTASection from '@/components/CTASection';
 import ImagePlaceholder from '@/components/ImagePlaceholder';
 import Photo from '@/components/Photo';
+import Reveal from '@/components/motion/Reveal';
 import { SERVICES } from '@/lib/content';
 
 export const metadata = {
@@ -17,7 +18,7 @@ export default function ServicesPage() {
     <>
       {/* Page header */}
       <section className="bg-cream">
-        <div className="container-page py-20 sm:py-24">
+        <Reveal className="container-page py-20 sm:py-24">
           <p className="eyebrow">Our services</p>
           <h1 className="h-display mt-3 max-w-3xl">
             Everything your property needs — handled by one local crew.
@@ -34,7 +35,7 @@ export default function ServicesPage() {
               (616) 366-1552
             </a>
           </div>
-        </div>
+        </Reveal>
       </section>
 
       {/* Service blocks */}
@@ -49,14 +50,26 @@ export default function ServicesPage() {
                 id={s.slug}
                 className="grid scroll-mt-24 gap-10 lg:grid-cols-2 lg:items-center"
               >
-                <div className={reverse ? 'lg:order-2' : ''}>
+                <Reveal
+                  direction={reverse ? 'left' : 'right'}
+                  className={reverse ? 'lg:order-2' : ''}
+                >
                   {s.image ? (
-                    <Photo src={s.image} alt={s.imageAlt ?? s.title} aspect="aspect-[5/4]" />
+                    <Photo
+                      src={s.image}
+                      alt={s.imageAlt ?? s.title}
+                      aspect="aspect-[5/4]"
+                      className="transition-transform duration-500 hover:scale-[1.02]"
+                    />
                   ) : (
                     <ImagePlaceholder label={`${s.title} — replace later`} aspect="aspect-[5/4]" />
                   )}
-                </div>
-                <div className={reverse ? 'lg:order-1' : ''}>
+                </Reveal>
+                <Reveal
+                  direction={reverse ? 'right' : 'left'}
+                  delay={0.1}
+                  className={reverse ? 'lg:order-1' : ''}
+                >
                   <div className="inline-grid h-12 w-12 place-items-center rounded-xl bg-brand-100 text-brand-700">
                     <Icon className="h-6 w-6" />
                   </div>
@@ -75,7 +88,7 @@ export default function ServicesPage() {
                       Request a quote
                     </Link>
                   </div>
-                </div>
+                </Reveal>
               </article>
             );
           })}

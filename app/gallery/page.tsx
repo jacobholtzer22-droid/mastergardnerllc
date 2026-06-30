@@ -1,6 +1,8 @@
-import { Section, SectionHeader } from '@/components/Section';
+import Image from 'next/image';
+import { Section } from '@/components/Section';
 import CTASection from '@/components/CTASection';
-import Photo from '@/components/Photo';
+import Reveal from '@/components/motion/Reveal';
+import { Stagger, StaggerItem } from '@/components/motion/Stagger';
 
 export const metadata = {
   title: 'Gallery — Master Gardner, LLC',
@@ -21,7 +23,7 @@ export default function GalleryPage() {
   return (
     <>
       <section className="bg-cream">
-        <div className="container-page py-20 sm:py-24">
+        <Reveal className="container-page py-20 sm:py-24">
           <p className="eyebrow">Gallery</p>
           <h1 className="h-display mt-3 max-w-3xl">
             Recent work across West Michigan.
@@ -30,20 +32,30 @@ export default function GalleryPage() {
             A look at some of the lawns, landscapes, and properties we&apos;ve had the chance
             to work on. New photos added throughout the season.
           </p>
-        </div>
+        </Reveal>
       </section>
 
       <Section>
-        <div className="grid gap-4 sm:grid-cols-2 lg:grid-cols-3">
+        <Stagger className="grid gap-4 sm:grid-cols-2 lg:grid-cols-3" stagger={0.08}>
           {GALLERY.map((item) => (
-            <figure key={item.src} className="group">
-              <Photo src={item.src} alt={item.alt} aspect="aspect-square" />
-              <figcaption className="mt-3 text-sm font-medium text-ink/70">
-                {item.label}
-              </figcaption>
-            </figure>
+            <StaggerItem key={item.src}>
+              <figure className="group relative aspect-square overflow-hidden rounded-2xl ring-1 ring-black/5">
+                <Image
+                  src={item.src}
+                  alt={item.alt}
+                  fill
+                  sizes="(max-width: 768px) 100vw, 33vw"
+                  className="object-cover transition-transform duration-[900ms] ease-out group-hover:scale-110"
+                />
+                {/* Caption slides up on hover */}
+                <div className="absolute inset-0 bg-gradient-to-t from-ink/85 via-ink/10 to-transparent opacity-0 transition-opacity duration-300 group-hover:opacity-100" />
+                <figcaption className="absolute inset-x-0 bottom-0 translate-y-3 p-4 text-sm font-semibold text-white opacity-0 transition-all duration-300 group-hover:translate-y-0 group-hover:opacity-100">
+                  {item.label}
+                </figcaption>
+              </figure>
+            </StaggerItem>
           ))}
-        </div>
+        </Stagger>
         <p className="mt-10 text-center text-sm text-ink/60">
           More photos added throughout the season.
         </p>

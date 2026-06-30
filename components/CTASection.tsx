@@ -1,17 +1,23 @@
 import Link from 'next/link';
 import { Phone } from 'lucide-react';
+import Reveal from '@/components/motion/Reveal';
 
 export default function CTASection() {
   return (
     <section className="relative overflow-hidden bg-brand-800 py-20 text-white">
+      {/* Drifting brand blobs */}
       <div
-        className="pointer-events-none absolute inset-0 opacity-20"
-        style={{
-          backgroundImage:
-            'radial-gradient(circle at 20% 20%, #a4c684 0, transparent 40%), radial-gradient(circle at 80% 80%, #7faf5a 0, transparent 40%)',
-        }}
+        aria-hidden
+        className="animate-drift pointer-events-none absolute -left-24 -top-24 h-80 w-80 rounded-full opacity-30 blur-3xl"
+        style={{ background: 'radial-gradient(circle, #a4c684 0, transparent 70%)' }}
       />
-      <div className="container-page relative z-10 flex flex-col items-center text-center">
+      <div
+        aria-hidden
+        className="animate-drift-slow pointer-events-none absolute -bottom-28 -right-20 h-96 w-96 rounded-full opacity-30 blur-3xl"
+        style={{ background: 'radial-gradient(circle, #7faf5a 0, transparent 70%)' }}
+      />
+
+      <Reveal className="container-page relative z-10 flex flex-col items-center text-center">
         <p className="eyebrow !text-brand-200">Ready to get started?</p>
         <h2 className="h-section mt-3 !text-white">
           Let&apos;s bring your landscape to life.
@@ -31,7 +37,7 @@ export default function CTASection() {
             <Phone className="h-4 w-4" /> (616) 366-1552
           </a>
         </div>
-      </div>
+      </Reveal>
     </section>
   );
 }

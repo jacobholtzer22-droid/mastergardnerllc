@@ -2,6 +2,8 @@ import { Leaf, HeartHandshake, Clock, ShieldCheck } from 'lucide-react';
 import { Section, SectionHeader } from '@/components/Section';
 import CTASection from '@/components/CTASection';
 import Photo from '@/components/Photo';
+import Reveal from '@/components/motion/Reveal';
+import { Stagger, StaggerItem } from '@/components/motion/Stagger';
 
 export const metadata = {
   title: 'About — Master Gardner, LLC',
@@ -20,7 +22,7 @@ export default function AboutPage() {
   return (
     <>
       <section className="bg-cream">
-        <div className="container-page py-20 sm:py-24">
+        <Reveal className="container-page py-20 sm:py-24">
           <p className="eyebrow">About Us</p>
           <h1 className="h-display mt-3 max-w-3xl">
             Crafting outdoor excellence across West Michigan.
@@ -30,19 +32,20 @@ export default function AboutPage() {
             Ada, Michigan. We serve Kent and Ottawa County with year-round property care —
             from spring cleanups to mid-winter plowing.
           </p>
-        </div>
+        </Reveal>
       </section>
 
       <Section>
         <div className="grid gap-12 lg:grid-cols-2 lg:items-center">
-          <div>
+          <Reveal direction="right">
             <Photo
               src="/images/deer-lawn.png"
               alt="A deer resting on a lush, healthy lawn beside evergreen trees"
               aspect="aspect-[4/5]"
+              className="transition-transform duration-500 hover:scale-[1.02]"
             />
-          </div>
-          <div>
+          </Reveal>
+          <Reveal direction="left" delay={0.1}>
             <p className="eyebrow">Our story</p>
             <h2 className="h-section mt-3">A local company, built one yard at a time.</h2>
             <div className="lead mt-4 space-y-4">
@@ -62,34 +65,38 @@ export default function AboutPage() {
                 property too.
               </p>
             </div>
-          </div>
+          </Reveal>
         </div>
       </Section>
 
       {/* Values */}
       <section className="bg-cream py-20 sm:py-24">
         <div className="container-page">
-          <SectionHeader
-            eyebrow="What we stand for"
-            title="The way we work."
-            center
-          />
-          <div className="mt-12 grid gap-6 sm:grid-cols-2 lg:grid-cols-4">
+          <Reveal>
+            <SectionHeader
+              eyebrow="What we stand for"
+              title="The way we work."
+              center
+            />
+          </Reveal>
+          <Stagger className="mt-12 grid gap-6 sm:grid-cols-2 lg:grid-cols-4" stagger={0.1}>
             {VALUES.map((v) => {
               const Icon = v.icon;
               return (
-                <div key={v.title} className="card-soft">
-                  <div className="grid h-12 w-12 place-items-center rounded-xl bg-brand-100 text-brand-700">
-                    <Icon className="h-6 w-6" />
+                <StaggerItem key={v.title}>
+                  <div className="card-soft h-full transition duration-300 hover:-translate-y-1.5 hover:shadow-lg">
+                    <div className="grid h-12 w-12 place-items-center rounded-xl bg-brand-100 text-brand-700">
+                      <Icon className="h-6 w-6" />
+                    </div>
+                    <h3 className="mt-5 font-display text-lg font-semibold text-ink">
+                      {v.title}
+                    </h3>
+                    <p className="mt-2 text-sm leading-relaxed text-ink/70">{v.body}</p>
                   </div>
-                  <h3 className="mt-5 font-display text-lg font-semibold text-ink">
-                    {v.title}
-                  </h3>
-                  <p className="mt-2 text-sm leading-relaxed text-ink/70">{v.body}</p>
-                </div>
+                </StaggerItem>
               );
             })}
-          </div>
+          </Stagger>
         </div>
       </section>
 
