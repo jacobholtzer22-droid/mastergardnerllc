@@ -18,6 +18,24 @@ const VALUES = [
   { icon: Leaf, title: 'Complete Confidence', body: 'Licensed, insured, and BBB accredited — so you can hand off the worry.' },
 ];
 
+const ON_THE_JOB = [
+  {
+    src: '/images/crew-truck-trailer.jpg',
+    alt: 'Master Gardner truck and equipment trailer staged on a property during a project',
+    caption: 'Our own trucks, our own crew — on site start to finish.',
+  },
+  {
+    src: '/images/commercial-streetside.jpg',
+    alt: 'Freshly mowed and edged lawn along a commercial storefront and sidewalk',
+    caption: 'Commercial accounts kept sharp week after week.',
+  },
+  {
+    src: '/images/snow-plowed-driveway.jpg',
+    alt: 'Residential driveway plowed clean at night with snow banked on both sides',
+    caption: 'And we show up in January, too.',
+  },
+];
+
 export default function AboutPage() {
   return (
     <>
@@ -67,6 +85,20 @@ export default function AboutPage() {
             </div>
           </Reveal>
         </div>
+
+        {/* Out on the job */}
+        <Stagger className="mt-16 grid gap-4 sm:grid-cols-3" stagger={0.1}>
+          {ON_THE_JOB.map((item) => (
+            <StaggerItem key={item.src}>
+              <figure>
+                <Photo src={item.src} alt={item.alt} aspect="aspect-[4/3]" />
+                <figcaption className="mt-3 text-sm font-medium text-ink/70">
+                  {item.caption}
+                </figcaption>
+              </figure>
+            </StaggerItem>
+          ))}
+        </Stagger>
       </Section>
 
       {/* Values */}

@@ -1,4 +1,5 @@
 import Link from 'next/link';
+import Image from 'next/image';
 import { ArrowRight, Star, ShieldCheck, Award, Leaf } from 'lucide-react';
 import { Section, SectionHeader } from '@/components/Section';
 import CTASection from '@/components/CTASection';
@@ -7,6 +8,15 @@ import Hero from '@/components/Hero';
 import Reveal from '@/components/motion/Reveal';
 import { Stagger, StaggerItem } from '@/components/motion/Stagger';
 import { SERVICES, TESTIMONIALS, VALUE_PROPS } from '@/lib/content';
+
+const RECENT_WORK = [
+  { src: '/images/estate-lawn-curve.jpg', label: 'Full-property lawn care', alt: 'Sweeping striped lawn wrapping around a large home and drive' },
+  { src: '/images/garden-bed-flowers.jpg', label: 'Planting & beds', alt: 'Red hot poker perennials blooming in a freshly mulched garden bed' },
+  { src: '/images/irrigation-sprinkler.jpg', label: 'Irrigation', alt: 'Sprinkler head watering a striped lawn beside a planted bed' },
+  { src: '/images/commercial-streetside.jpg', label: 'Commercial curb appeal', alt: 'Freshly mowed and edged lawn along a commercial storefront and sidewalk' },
+  { src: '/images/fall-lawn-woods.jpg', label: 'Fall cleanups', alt: 'Lawn cut clean along a wooded tree line in early fall' },
+  { src: '/images/snow-plowed-driveway.jpg', label: 'Snow plowing', alt: 'Residential driveway plowed clean at night with snow banked on both sides' },
+];
 
 export default function HomePage() {
   return (
@@ -86,8 +96,49 @@ export default function HomePage() {
         </div>
       </section>
 
-      {/* TESTIMONIALS */}
+      {/* RECENT WORK */}
       <Section>
+        <Reveal>
+          <SectionHeader
+            eyebrow="Recent work"
+            title="Real properties, real results."
+            description="A few of the lawns, beds, and driveways we've taken care of around West Michigan."
+          />
+        </Reveal>
+        <Stagger
+          className="mt-12 grid grid-cols-2 gap-3 sm:grid-cols-3 lg:grid-cols-6"
+          stagger={0.07}
+        >
+          {RECENT_WORK.map((item) => (
+            <StaggerItem key={item.src}>
+              <Link
+                href="/gallery"
+                className="group relative block aspect-square overflow-hidden rounded-2xl bg-brand-100 ring-1 ring-black/5"
+              >
+                <Image
+                  src={item.src}
+                  alt={item.alt}
+                  fill
+                  sizes="(max-width: 640px) 50vw, (max-width: 1024px) 33vw, 200px"
+                  className="object-cover transition-transform duration-700 ease-out group-hover:scale-110"
+                />
+                <div className="absolute inset-0 bg-gradient-to-t from-ink/80 via-ink/5 to-transparent opacity-0 transition-opacity duration-300 group-hover:opacity-100" />
+                <span className="absolute inset-x-0 bottom-0 translate-y-2 p-3 text-xs font-semibold text-white opacity-0 transition-all duration-300 group-hover:translate-y-0 group-hover:opacity-100">
+                  {item.label}
+                </span>
+              </Link>
+            </StaggerItem>
+          ))}
+        </Stagger>
+        <Reveal className="mt-10 flex justify-center" delay={0.1}>
+          <Link href="/gallery" className="btn-outline">
+            See the full gallery
+          </Link>
+        </Reveal>
+      </Section>
+
+      {/* TESTIMONIALS */}
+      <Section className="bg-cream">
         <Reveal>
           <SectionHeader
             eyebrow="Reviews"

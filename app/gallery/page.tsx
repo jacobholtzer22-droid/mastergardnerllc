@@ -10,13 +10,35 @@ export const metadata = {
     'Recent landscaping, lawn care, and hardscape projects by Master Gardner, LLC.',
 };
 
-const GALLERY = [
+type GalleryItem = {
+  src: string;
+  label: string;
+  alt: string;
+  /** feature tiles take a 2x2 block on large screens */
+  feature?: boolean;
+  /** wide tiles take a 2x1 block on large screens */
+  wide?: boolean;
+};
+
+const GALLERY: GalleryItem[] = [
+  { src: '/images/truck-on-site.png', label: 'Commercial mowing & striping', alt: 'Master Gardner truck and trailer on a commercial property with striped lawn', feature: true },
+  { src: '/images/estate-lawn-curve.jpg', label: 'Full-property lawn care', alt: 'Sweeping striped lawn wrapping around a large home and drive' },
+  { src: '/images/garden-bed-flowers.jpg', label: 'Planting & bed design', alt: 'Red hot poker perennials blooming in a freshly mulched garden bed' },
+  { src: '/images/irrigation-sprinkler.jpg', label: 'Irrigation systems', alt: 'Sprinkler head watering a striped lawn beside a planted bed' },
   { src: '/images/commercial-property.png', label: 'Commercial property maintenance', alt: 'Manicured lawn and beds lining a sidewalk at a commercial property' },
-  { src: '/images/truck-on-site.png', label: 'Commercial mowing & striping', alt: 'Master Gardner truck and trailer on a commercial property with striped lawn' },
-  { src: '/images/commercial-lawn-stripes.png', label: 'Clean mowing stripes', alt: 'Lawn with crisp mowing stripes along a fence line' },
-  { src: '/images/backyard-lawn-stripes.png', label: 'Residential lawn care', alt: 'Striped backyard lawn shaded by mature trees' },
-  { src: '/images/tree-lawn-stripes.png', label: 'Detailed trimming & edging', alt: 'Mowing stripes carefully cut around a tree' },
+  { src: '/images/spring-lawn-stripes.jpg', label: 'Spring stripe patterns', alt: 'Wide green lawn with fresh spring mowing stripes running toward a tree line' },
+  { src: '/images/commercial-lawn-stripes.png', label: 'Clean mowing stripes', alt: 'Lawn with crisp mowing stripes along a fence line', feature: true },
+  { src: '/images/hillside-stripes.jpg', label: 'Sloped-lawn mowing', alt: 'Striped lawn running down a slope toward mature trees' },
+  { src: '/images/commercial-streetside.jpg', label: 'Streetside curb appeal', alt: 'Freshly mowed and edged lawn along a commercial storefront and sidewalk' },
+  { src: '/images/crew-truck-trailer.jpg', label: 'On the job', alt: 'Master Gardner truck and equipment trailer staged on a property during a project' },
   { src: '/images/deer-lawn.png', label: 'Healthy, lush turf', alt: 'A deer resting on a healthy green lawn beside evergreens' },
+  { src: '/images/fall-hillside-lawn.jpg', label: 'Fall cleanups', alt: 'Freshly cut hillside lawn framed by autumn color', wide: true },
+  { src: '/images/backyard-lawn-stripes.png', label: 'Residential lawn care', alt: 'Striped backyard lawn shaded by mature trees' },
+  { src: '/images/fall-lawn-woods.jpg', label: 'Lawn restoration', alt: 'Restored lawn cut clean along a wooded tree line in early fall' },
+  { src: '/images/dusk-lawn-dog.jpg', label: 'Evening finish', alt: 'Striped lawn at dusk with a dog walking across it' },
+  { src: '/images/tree-lawn-stripes.png', label: 'Detailed trimming & edging', alt: 'Mowing stripes carefully cut around a tree' },
+  { src: '/images/fall-maple-leaves.jpg', label: 'Seasonal color', alt: 'Close-up of bright red maple leaves in fall' },
+  { src: '/images/snow-plowed-driveway.jpg', label: 'Snow plowing', alt: 'Residential driveway plowed clean at night with snow banked on both sides' },
 ];
 
 export default function GalleryPage() {
@@ -36,15 +58,36 @@ export default function GalleryPage() {
       </section>
 
       <Section>
-        <Stagger className="grid gap-4 sm:grid-cols-2 lg:grid-cols-3" stagger={0.08}>
+        <Stagger className="grid grid-cols-2 gap-3 sm:grid-cols-3 sm:gap-4 lg:grid-cols-4" stagger={0.05}>
           {GALLERY.map((item) => (
-            <StaggerItem key={item.src}>
-              <figure className="group relative aspect-square overflow-hidden rounded-2xl ring-1 ring-black/5">
+            <StaggerItem
+              key={item.src}
+              className={
+                item.feature
+                  ? 'lg:col-span-2 lg:row-span-2'
+                  : item.wide
+                    ? 'col-span-2'
+                    : ''
+              }
+            >
+              <figure
+                className={`group relative overflow-hidden rounded-2xl bg-brand-100 ring-1 ring-black/5 ${
+                  item.wide
+                    ? 'aspect-[2/1] lg:aspect-auto lg:h-full'
+                    : item.feature
+                      ? 'aspect-square lg:h-full'
+                      : 'aspect-square'
+                }`}
+              >
                 <Image
                   src={item.src}
                   alt={item.alt}
                   fill
-                  sizes="(max-width: 768px) 100vw, 33vw"
+                  sizes={
+                    item.feature || item.wide
+                      ? '(max-width: 640px) 100vw, (max-width: 1024px) 50vw, 600px'
+                      : '(max-width: 640px) 50vw, (max-width: 1024px) 33vw, 300px'
+                  }
                   className="object-cover transition-transform duration-[900ms] ease-out group-hover:scale-110"
                 />
                 {/* Caption slides up on hover */}

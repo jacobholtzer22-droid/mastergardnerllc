@@ -35,8 +35,8 @@ export const SERVICES: Service[] = [
     short: 'Custom garden design, mulching, planting, and hardscape work tailored to your property.',
     long: 'From new garden beds to full property redesigns, we build landscapes that look great today and grow beautifully over time. Mulch, plantings, edging, stone work — we handle the design, the install, and the long-term care.',
     icon: Leaf,
-    image: '/images/tree-lawn-stripes.png',
-    imageAlt: 'Landscaped lawn with mowing stripes detailed around a tree',
+    image: '/images/garden-bed-flowers.jpg',
+    imageAlt: 'Red hot poker perennials blooming in a freshly mulched garden bed',
     features: [
       'Garden design & installation',
       'Mulching & bed refreshes',
@@ -51,6 +51,8 @@ export const SERVICES: Service[] = [
     short: 'Sprinkler system installation, tuning, and seasonal start-up / blow-out.',
     long: 'A healthy lawn needs the right amount of water at the right time. We install efficient irrigation systems, tune zones for full coverage, and handle spring start-ups and fall winterization so your system lasts.',
     icon: Droplets,
+    image: '/images/irrigation-sprinkler.jpg',
+    imageAlt: 'Irrigation sprinkler head watering a striped lawn beside a planted bed',
     features: [
       'New system installation',
       'Zone tuning & repairs',
@@ -65,6 +67,8 @@ export const SERVICES: Service[] = [
     short: 'Patios, walkways, retaining walls, and full outdoor renovations.',
     long: 'Bigger projects, done right. We design and build paver patios, walkways, retaining walls, and outdoor living spaces — coordinating every step from grading to the final stone so the result lasts decades.',
     icon: Hammer,
+    image: '/images/crew-truck-trailer.jpg',
+    imageAlt: 'Master Gardner truck and equipment trailer staged on a property during a project',
     features: [
       'Paver patios & walkways',
       'Retaining walls',
@@ -79,6 +83,8 @@ export const SERVICES: Service[] = [
     short: 'Aeration, overseeding, dethatching, and soil work to bring tired lawns back to life.',
     long: 'When a lawn needs more than a mow, we restore it. Core aeration, overseeding with the right blend for your conditions, dethatching, and targeted soil amendments — built into a multi-season plan when needed.',
     icon: Sprout,
+    image: '/images/fall-lawn-woods.jpg',
+    imageAlt: 'Restored lawn cut clean along a wooded tree line in early fall',
     features: [
       'Core aeration',
       'Overseeding',
@@ -93,6 +99,8 @@ export const SERVICES: Service[] = [
     short: 'Residential driveways and commercial lots, plowed reliably all winter.',
     long: 'When the snow falls, we show up. Reliable plowing for driveways, private roads, and commercial parking lots across our service area — with clear pricing and dependable communication you can plan around.',
     icon: Snowflake,
+    image: '/images/snow-plowed-driveway.jpg',
+    imageAlt: 'Residential driveway plowed clean at night with snow banked on both sides',
     features: [
       'Residential driveways',
       'Commercial parking lots',
