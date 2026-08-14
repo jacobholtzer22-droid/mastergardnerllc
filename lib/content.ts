@@ -8,8 +8,9 @@ export type Service = {
   long: string;
   icon: LucideIcon;
   features: string[];
-  image?: string;
-  imageAlt?: string;
+  /** Every service must ship with a real photo — no placeholder panels. */
+  image: string;
+  imageAlt: string;
 };
 
 export const SERVICES: Service[] = [
@@ -99,8 +100,8 @@ export const SERVICES: Service[] = [
     short: 'Residential driveways and commercial lots, plowed reliably all winter.',
     long: 'When the snow falls, we show up. Reliable plowing for driveways, private roads, and commercial parking lots across our service area — with clear pricing and dependable communication you can plan around.',
     icon: Snowflake,
-    image: '/images/snow-plowed-driveway.jpg',
-    imageAlt: 'Residential driveway plowed clean at night with snow banked on both sides',
+    image: '/images/plow-truck.jpg',
+    imageAlt: 'Master Gardner truck fitted with a Western MVP3 plow, ready for the season',
     features: [
       'Residential driveways',
       'Commercial parking lots',
@@ -115,6 +116,8 @@ export const SERVICES: Service[] = [
     short: 'Ice control for driveways, sidewalks, and parking lots — keeping properties safe.',
     long: 'Safe surfaces, all winter. We apply salt and ice-melt products on driveways, walks, and commercial lots — sized to the property and timed to the storm so slips and liability claims stay off your plate.',
     icon: Shovel,
+    image: '/images/bulk-salt.jpg',
+    imageAlt: 'Storage container stocked with bulk salt and ice-melt ahead of a storm',
     features: [
       'Driveway & walk salting',
       'Commercial ice management',

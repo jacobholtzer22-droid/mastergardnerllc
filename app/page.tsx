@@ -10,12 +10,12 @@ import { Stagger, StaggerItem } from '@/components/motion/Stagger';
 import { SERVICES, TESTIMONIALS, VALUE_PROPS } from '@/lib/content';
 
 const RECENT_WORK = [
-  { src: '/images/estate-lawn-curve.jpg', label: 'Full-property lawn care', alt: 'Sweeping striped lawn wrapping around a large home and drive' },
+  { src: '/images/crosshatch-stripes.jpg', label: 'Crosshatch striping', alt: 'Lawn mowed in a crosshatch pattern with long afternoon shadows' },
   { src: '/images/garden-bed-flowers.jpg', label: 'Planting & beds', alt: 'Red hot poker perennials blooming in a freshly mulched garden bed' },
   { src: '/images/irrigation-sprinkler.jpg', label: 'Irrigation', alt: 'Sprinkler head watering a striped lawn beside a planted bed' },
-  { src: '/images/commercial-streetside.jpg', label: 'Commercial curb appeal', alt: 'Freshly mowed and edged lawn along a commercial storefront and sidewalk' },
-  { src: '/images/fall-lawn-woods.jpg', label: 'Fall cleanups', alt: 'Lawn cut clean along a wooded tree line in early fall' },
-  { src: '/images/snow-plowed-driveway.jpg', label: 'Snow plowing', alt: 'Residential driveway plowed clean at night with snow banked on both sides' },
+  { src: '/images/sunset-commercial.jpg', label: 'Commercial curb appeal', alt: 'Commercial lawn and walkway at sunset with an orange sky' },
+  { src: '/images/autumn-stripes.jpg', label: 'Fall cleanups', alt: 'Long mowing stripes running through a lawn framed by autumn trees' },
+  { src: '/images/plow-truck.jpg', label: 'Snow & ice', alt: 'Master Gardner truck fitted with a Western MVP3 plow, ready for the season' },
 ];
 
 export default function HomePage() {
@@ -122,8 +122,8 @@ export default function HomePage() {
                   sizes="(max-width: 640px) 50vw, (max-width: 1024px) 33vw, 200px"
                   className="object-cover transition-transform duration-700 ease-out group-hover:scale-110"
                 />
-                <div className="absolute inset-0 bg-gradient-to-t from-ink/80 via-ink/5 to-transparent opacity-0 transition-opacity duration-300 group-hover:opacity-100" />
-                <span className="absolute inset-x-0 bottom-0 translate-y-2 p-3 text-xs font-semibold text-white opacity-0 transition-all duration-300 group-hover:translate-y-0 group-hover:opacity-100">
+                <div className="absolute inset-0 bg-gradient-to-t from-ink/80 via-ink/5 to-transparent transition-opacity duration-300 md:opacity-0 md:group-hover:opacity-100" />
+                <span className="absolute inset-x-0 bottom-0 p-3 text-xs font-semibold text-white transition-all duration-300 md:translate-y-2 md:opacity-0 md:group-hover:translate-y-0 md:group-hover:opacity-100">
                   {item.label}
                 </span>
               </Link>

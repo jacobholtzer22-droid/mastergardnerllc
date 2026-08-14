@@ -2,7 +2,6 @@ import Link from 'next/link';
 import { Check, ArrowRight } from 'lucide-react';
 import { Section, SectionHeader } from '@/components/Section';
 import CTASection from '@/components/CTASection';
-import ServiceVisual from '@/components/ServiceVisual';
 import Photo from '@/components/Photo';
 import Reveal from '@/components/motion/Reveal';
 import { SERVICES } from '@/lib/content';
@@ -54,21 +53,12 @@ export default function ServicesPage() {
                   direction={reverse ? 'left' : 'right'}
                   className={reverse ? 'lg:order-2' : ''}
                 >
-                  {s.image ? (
-                    <Photo
-                      src={s.image}
-                      alt={s.imageAlt ?? s.title}
-                      aspect="aspect-[5/4]"
-                      className="transition-transform duration-500 hover:scale-[1.02]"
-                    />
-                  ) : (
-                    <ServiceVisual
-                      icon={Icon}
-                      title={s.title}
-                      caption="Storm-by-storm or seasonal contract, across Kent and Ottawa County."
-                      aspect="aspect-[5/4]"
-                    />
-                  )}
+                  <Photo
+                    src={s.image}
+                    alt={s.imageAlt ?? s.title}
+                    aspect="aspect-[5/4]"
+                    className="transition-transform duration-500 hover:scale-[1.02]"
+                  />
                 </Reveal>
                 <Reveal
                   direction={reverse ? 'right' : 'left'}
