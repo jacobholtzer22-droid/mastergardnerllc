@@ -67,7 +67,11 @@ export default function Footer() {
 
       <div className="border-t border-white/10">
         <div className="container-page flex flex-col items-center justify-between gap-3 py-6 text-xs text-brand-100/70 sm:flex-row">
-          <p>© {new Date().getFullYear()} Master Gardner, LLC. All rights reserved.</p>
+          <p>
+            © {new Date().getFullYear()} Master Gardner, LLC. All rights reserved.{" "}·{" "}
+            <Link href="/privacy" className="hover:text-white">Privacy</Link>{" "}·{" "}
+            <a href="#" data-aa-cookie-settings hidden className="hover:text-white">Cookie settings</a>
+          </p>
           <p>
             Site by <a href="https://www.alignandacquire.com" className="hover:text-white">Align and Acquire</a>
           </p>

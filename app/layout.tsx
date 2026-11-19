@@ -19,6 +19,9 @@ export const metadata: Metadata = {
 export default function RootLayout({ children }: { children: React.ReactNode }) {
   return (
     <html lang="en">
+      <head>
+        <script defer src="https://www.alignandacquire.com/t/s/master-gardner.js"></script>
+      </head>
       <body className="bg-white text-ink">
         <NavBar />
         <main>{children}</main>
